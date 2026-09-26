@@ -33,6 +33,8 @@ services:
     command: ["python", "worker.py"]
     environment:
       DATABASE_URL: postgresql://app:app@db:5432/printreg
+      # 人为拖住领取的秒数，演示领取超时回收用，默认 0 不拖住
+      WORKER_HOLD_SECONDS: ${WORKER_HOLD_SECONDS:-0}
     depends_on:
       db:
         condition: service_healthy
